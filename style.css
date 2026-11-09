@@ -1,0 +1,392 @@
+/* Variables y Configuración Básica */
+:root {
+    --bg-color: #0d0d0d;
+    --card-bg: #1a1a1a;
+    --primary-yellow: #fff000;
+    --primary-red: #e3000f;
+    --text-light: #ffffff;
+    --text-muted: #888888;
+    --whatsapp-green: #25D366;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    /* Fondo directo con los puntos de luz y las líneas sutiles */
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(circle 600px at 15% 15%, rgba(227, 0, 15, 0.12), transparent 70%),
+        radial-gradient(circle 500px at 85% 85%, rgba(255, 240, 0, 0.1), transparent 70%),
+        radial-gradient(circle 700px at 50% 50%, rgba(37, 211, 102, 0.05), transparent 70%),
+        repeating-linear-gradient(45deg, rgba(255, 240, 0, 0.03) 0, rgba(255, 240, 0, 0.03) 1px, transparent 0, transparent 40px);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ================= ANIMACIONES ================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-on-load {
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.delay-1 {
+    opacity: 0;
+    animation-delay: 0.3s;
+}
+
+/* ================= NAVBAR STICKY ================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(13, 13, 13, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #222;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.brand span {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary-yellow);
+    letter-spacing: 2px;
+}
+
+.nav-btn {
+    background-color: transparent;
+    color: var(--primary-yellow);
+    border: 2px solid var(--primary-yellow);
+    padding: 8px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: var(--primary-yellow);
+    color: #000;
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+    position: relative;
+    background-image: url('referenciainsomnia/Todos.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 160px 20px 100px;
+    text-align: center;
+    border-bottom: 5px solid var(--primary-red);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(13,13,13,0.75), rgba(13,13,13,0.95));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-text-logo {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    margin-bottom: 25px;
+    filter: drop-shadow(0px 8px 20px rgba(0,0,0,0.9));
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #cccccc;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    background-color: var(--primary-red);
+    color: #fff;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.cta-btn:hover {
+    background-color: #b3000b;
+    transform: scale(1.05);
+}
+
+/* ================= CINTA DE TEXTO (MARQUEE) ================= */
+.marquee-container {
+    background-color: var(--primary-yellow);
+    overflow: hidden;
+    padding: 10px 0;
+    white-space: nowrap;
+    border-bottom: 2px solid #000;
+}
+
+.marquee-text {
+    display: inline-block;
+    color: #000;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    animation: scrollText 15s linear infinite;
+}
+
+/* ================= PRODUCTOS ================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #222;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    border-color: var(--primary-yellow);
+}
+
+.img-container {
+    width: 100%;
+    height: 350px;
+    background-color: #050505;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img-container img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .img-container img {
+    transform: scale(1.15) rotate(2deg);
+}
+
+.product-info {
+    padding: 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.category {
+    font-size: 0.8rem;
+    color: var(--primary-yellow);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.product-info h3 {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.product-info .size {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: auto;
+    padding-bottom: 15px;
+}
+
+.product-info .price {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary-red);
+    border-top: 1px solid #222;
+    padding-top: 15px;
+}
+
+/* ================= BANNER LEGAL ================= */
+.legal-banner {
+    background-color: rgba(5, 5, 5, 0.9);
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-top: 2px solid #222;
+}
+
+/* ================= FOOTER ================= */
+.site-footer {
+    background-color: rgba(8, 8, 8, 0.95);
+    padding: 80px 20px;
+    text-align: center;
+    border-top: 5px solid var(--primary-red);
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.open-hours {
+    font-size: 2.2rem;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.site-footer p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: var(--text-muted);
+}
+
+/* Contenedor de Botones Sociales */
+.social-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Estructura base para ambos botones con ancho fijo simétrico */
+.whatsapp-btn, .instagram-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    width: 300px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Colores: WhatsApp */
+.whatsapp-btn {
+    background-color: var(--whatsapp-green);
+    color: #000;
+}
+
+/* Colores: Instagram */
+.instagram-btn {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #fff;
+}
+
+/* Efectos hover */
+.whatsapp-btn:hover, .instagram-btn:hover {
+    transform: scale(1.08);
+}
+
+.whatsapp-btn:hover {
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
+}
+
+.instagram-btn:hover {
+    box-shadow: 0 0 25px rgba(220, 39, 67, 0.4);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+
+/* Responsividad (Celulares) */
+@media (max-width: 768px) {
+    .hero-text-logo { max-width: 320px; }
+    .section-title { font-size: 2rem; }
+    .brand span { display: none; }
+}
